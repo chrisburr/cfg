@@ -9,7 +9,7 @@ import copy
 import os
 import re
 import zipfile
-
+import six
 import threading
 
 
@@ -23,8 +23,8 @@ def S_OK(value=''):
 
 class ListDummy:
   def fromChar(self, inputString, sepChar=","):
-    if not (isinstance(inputString, basestring) and
-            isinstance(sepChar, basestring) and
+    if not (isinstance(inputString, six.string_types) and
+            isinstance(sepChar, six.string_types) and
             sepChar):  # to prevent getting an empty String as argument
       return None
 
@@ -102,7 +102,7 @@ class CFG(object):
       if not recDict:
         return S_ERROR("Parent section does not exist %s" % sectionName)
       parentSection = recDict['value']
-      if isinstance(parentSection, basestring):
+      if isinstance(parentSection, six.string_types):
         raise KeyError("Entry %s doesn't seem to be a section" % recDict['key'])
       return parentSection.createNewSection(recDict['levelsBelow'], comment, contents)
     self.__addEntry(sectionName, comment)
@@ -147,7 +147,7 @@ class CFG(object):
       if not recDict:
         return S_ERROR("Parent section does not exist %s" % optionName)
       parentSection = recDict['value']
-      if isinstance(parentSection, basestring):
+      if isinstance(parentSection, six.string_types):
         raise KeyError("Entry %s doesn't seem to be a section" % recDict['key'])
       return parentSection.setOption(recDict['levelsBelow'], value, comment)
     self.__addEntry(optionName, comment)
@@ -261,9 +261,9 @@ class CFG(object):
     :return: List with the option names
     """
     if ordered:
-      return [sKey for sKey in self.__orderedList if isinstance(self.__dataDict[sKey], basestring)]
+      return [sKey for sKey in self.__orderedList if isinstance(self.__dataDict[sKey], six.string_types)]
     else:
-      return [sKey for sKey in self.__dataDict.keys() if isinstance(self.__dataDict[sKey], basestring)]
+      return [sKey for sKey in self.__dataDict.keys() if isinstance(self.__dataDict[sKey], six.string_types)]
 
   @gCFGSynchro
   def listSections(self, ordered=True):
@@ -275,9 +275,9 @@ class CFG(object):
     :return: List with the subsection names
     """
     if ordered:
-      return [sKey for sKey in self.__orderedList if not isinstance(self.__dataDict[sKey], basestring)]
+      return [sKey for sKey in self.__orderedList if not isinstance(self.__dataDict[sKey], six.string_types)]
     else:
-      return [sKey for sKey in self.__dataDict.keys() if not isinstance(self.__dataDict[sKey], basestring)]
+      return [sKey for sKey in self.__dataDict.keys() if not isinstance(self.__dataDict[sKey], six.string_types)]
 
   @gCFGSynchro
   def isSection(self, key):
@@ -293,11 +293,11 @@ class CFG(object):
       if not keyDict:
         return False
       section = keyDict['value']
-      if isinstance(section, basestring):
+      if isinstance(section, six.string_types):
         return False
       secKey = keyDict['levelsBelow']
       return section.isSection(secKey)
-    return key in self.__dataDict and not isinstance(self.__dataDict[key], basestring)
+    return key in self.__dataDict and not isinstance(self.__dataDict[key], six.string_types)
 
   @gCFGSynchro
   def isOption(self, key):
@@ -313,11 +313,11 @@ class CFG(object):
       if not keyDict:
         return False
       section = keyDict['value']
-      if isinstance(section, basestring):
+      if isinstance(section, six.string_types):
         return False
       secKey = keyDict['levelsBelow']
       return section.isOption(secKey)
-    return key in self.__dataDict and isinstance(self.__dataDict[key], basestring)
+    return key in self.__dataDict and isinstance(self.__dataDict[key], six.string_types)
 
   def listAll(self):
     """
@@ -401,7 +401,7 @@ class CFG(object):
         return defaultValue
       dataD = dataV
 
-    if not isinstance(dataV, basestring):
+    if not isinstance(dataV, six.string_types):
       optionValue = defaultValue
     else:
       optionValue = dataV
@@ -467,7 +467,7 @@ class CFG(object):
       if not reqDict:
         return resVal
       keyCfg = reqDict['value']
-      if isinstance(keyCfg, basestring):
+      if isinstance(keyCfg, six.string_types):
         return resVal
       return keyCfg.getAsDict()
     for op in self.listOptions():
