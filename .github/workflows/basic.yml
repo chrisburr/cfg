@@ -3,7 +3,7 @@ name: basic
 on: [push, pull_request]
 
 jobs:
-  diracInstall:
+  basic:
     runs-on: ubuntu-latest
 
     strategy:
@@ -29,10 +29,14 @@ jobs:
     - name: prepare environment
       run: |
         conda config --set add_pip_as_python_dependency false
-        conda create -c conda-forge -c free -n python_${{ matrix.python }} python=${{ matrix.python }} environment.yml
+        conda create -c conda-forge -c free -n python_${{ matrix.python }} python=${{ matrix.python }}
+        source "${CONDA}/bin/activate"
+        conda activate python_${{ matrix.python }}
+        conda install pytest pylint
     - name: tests
       run: |
-        eval "$(conda shell.bash hook)" && conda activate python_${{ matrix.python }}
+        source "${CONDA}/bin/activate"
+        conda activate python_${{ matrix.python }}
         set -euxo pipefail
         export PYTHONPATH=${PWD%/*}
         ${{ matrix.command }}
