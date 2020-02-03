@@ -1,0 +1,9 @@
+name: cfg-development
+
+channels:
+  - conda-forge
+
+dependencies:
+  # runtime
+  - pylint >=1.6.5
+  - pytest
