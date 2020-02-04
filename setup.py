@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="cfg",
-    version="0.0.1",
+    version="0.0.2",
     author="Federico Stagni",
     # author_email="author@example.com",
     description="DIRAC cfg files reader",

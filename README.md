@@ -17,7 +17,7 @@ python -m aDIRACCFGFile.cfg something something
 e.g. if you want to parse the releases.cfg file:
 
 ```
-python -m cfg ../DIRAC/releases.cfg v6r22
+# python -m cfg ../DIRAC/releases.cfg v6r22
 Modules = DIRAC
 Modules += VMDIRAC:v2r4-pre2
 Modules += RESTDIRAC:v0r6
@@ -31,6 +31,13 @@ DIRACOS = v1r2
 or:
 
 ```
-python -m cfg ../DIRAC/releases.cfg v6r22 Externals
+# python -m cfg ../DIRAC/releases.cfg v6r22 Externals
 v6r6p8
+```
+
+for finding the latest release (e.g. no "integration"):
+
+```
+# python -m cfg ../DIRAC/releases.cfg latest --print-only
+v7r0-pre15
 ```
