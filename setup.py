@@ -25,6 +25,9 @@ setuptools.setup(
     extras_require={
         'testing': test_requires,
     },
+    entry_points={
+        'console_scripts': ['diraccfg=diraccfg.__main__:parseArgs'],
+    },
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GPLv3 License",
