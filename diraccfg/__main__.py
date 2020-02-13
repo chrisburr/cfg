@@ -18,7 +18,7 @@ def parseArgs():
   parserJson.add_argument('cfgfile')
   parserJson.set_defaults(func=lambda a: dumpAsJson(a.cfgfile))
 
-  parserSort = subparsers.add_parser('sort-versions', help='Read JSON from stdin')
+  parserSort = subparsers.add_parser('sort-versions', help='Read JSON from stdin and prints JSON list of sorted version numbers')
   parserSort.add_argument('--allow-pre-releases', action='store_true')
   parserSort.set_defaults(func=lambda a: sortVersions(a.allow_pre_releases))
 
@@ -37,7 +37,7 @@ def dumpAsJson(cfgFilename):
 def sortVersions(allow_pre_releases=False):
   try:
     objs = json.loads(sys.stdin.read())
-  except json.JSONDecodeError:
+  except getattr(json, 'JSONDecodeError', ValueError):
     sys.stderr.write('ERROR: Failed to parse standard input as JSON\n')
     sys.exit(1)
 
