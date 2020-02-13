@@ -1,4 +1,4 @@
-# This enables to do, e.g. "python -m cfg aCFGfile.cfg v6r22p13 DIRACOS"
+# This enables to do, e.g. "python -m diraccfg a_cfg_file.cfg v6r22p13 DIRACOS"
 
 from __future__ import print_function
 

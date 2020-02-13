@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="cfg",
+    name="diraccfg",
     version="0.0.2",
     author="Federico Stagni",
     # author_email="author@example.com",
