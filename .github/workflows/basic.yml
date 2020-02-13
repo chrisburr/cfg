@@ -42,3 +42,16 @@ jobs:
         ${{ matrix.command }}
       env:
         REFERENCE_BRANCH: ${{ github['base_ref'] || github['head_ref'] }}
+
+  publish-pypi:
+    runs-on: ubuntu-latest
+    name: Publish package to PyPI
+    needs: [basic]
+    steps:
+      - name: Publish package
+        if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          user: __token__
+          password: ${{ secrets.pypi_password }}
+          repository_url: https://test.pypi.org/legacy/

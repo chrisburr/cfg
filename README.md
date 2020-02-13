@@ -4,7 +4,7 @@ DIRAC cfg file parser
 
 # installation
 
-pip install git+https://github.com/DIRACGrid/diraccfg.git#egg=diraccfg
+pip install git+https://github.com/DIRACGrid/cfg.git#egg=diraccfg
 
 # usage
 
