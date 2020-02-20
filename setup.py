@@ -5,7 +5,7 @@ with open(os.path.join(os.path.dirname(__file__), "README.md"), "rt") as fh:
     long_description = fh.read()
 
 test_requires = [
-    "pytest",
+    "pytest>=4.6",
     "pytest-cov",
     "pylint>=1.6.5",
     "pycodestyle",
