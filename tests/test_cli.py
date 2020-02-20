@@ -19,7 +19,12 @@ def argparse_test(monkeypatch, capsys):
     def run_command(args, expected_code=0, stdin=None):
         monkeypatch.setattr("sys.argv", args)
         if stdin is not None:
-            monkeypatch.setattr('sys.stdin', io.StringIO(stdin))
+            try:
+                stdin = io.StringIO(stdin)
+            except TypeError:
+                # stdin needs decoding to unicode in Python 2
+                stdin = io.StringIO(stdin.decode())
+            monkeypatch.setattr('sys.stdin', stdin)
         with pytest.raises(SystemExit) as excinfo:
             diraccfg.__main__.parseArgs()
         assert excinfo.value.code == expected_code
@@ -57,6 +62,9 @@ def test_as_json(argparse_test):
     args = ["diraccfg", "as-json", EXAMPLE_CFG_FILE]
     stdout, stderr = argparse_test(args, 0)
     assert stderr == ""
+    with open(EXAMPLE_CFG_FILE, 'rt') as fp:
+        assert "Here is where the releases go:" in fp.read()
+    assert "Here is where the releases go:" not in stdout
     result = json.loads(stdout)
     assert result['Releases']['v6r22']['DIRACOS'] == 'v1r2'  # pylint: disable=unsubscriptable-object
 
