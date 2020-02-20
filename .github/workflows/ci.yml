@@ -22,13 +22,6 @@ jobs:
       run: |
         . "${CONDA}/bin/activate" test-env
         pytest
-
-  pylint:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2
-    - name: Prepare environment
-      run: .github/workflows/prepare_environment.sh 3
     - name: Run pylint
       run: |
         . "${CONDA}/bin/activate" test-env
@@ -48,7 +41,7 @@ jobs:
   publish-pypi:
     runs-on: ubuntu-latest
     name: Publish package to PyPI
-    needs: [pytest, pylint, pycodestyle]
+    needs: [pytest, pycodestyle]
     steps:
       - name: Publish package
         if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
