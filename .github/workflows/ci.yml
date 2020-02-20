@@ -20,9 +20,6 @@ jobs:
     - name: Run pytest
       run: |
         . "${CONDA}/bin/activate" test-env
-        pwd
-        ls
-        ls *
         pytest
 
   pylint:
@@ -45,7 +42,7 @@ jobs:
     - name: Run pycodestyle
       run: |
         . "${CONDA}/bin/activate" test-env
-        pycodestyle
+        pycodestyle diraccfg/ tests/
 
   publish-pypi:
     runs-on: ubuntu-latest
