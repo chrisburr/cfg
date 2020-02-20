@@ -1,5 +1,2 @@
 [build-system]
 requires = ["setuptools>=30.3.0", "wheel", "setuptools_scm"]
-
-[pytest]
-addopts = "--cov=diraccfg --cov-report=term-missing -rx -v --color=yes --tb=long"
