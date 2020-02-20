@@ -32,7 +32,7 @@ jobs:
     - name: Run pylint
       run: |
         . "${CONDA}/bin/activate" test-env
-        pylint -E diraccfg/ tests/
+        pylint -E src/diraccfg/ tests/
 
   pycodestyle:
     runs-on: ubuntu-latest
@@ -43,7 +43,7 @@ jobs:
     - name: Run pycodestyle
       run: |
         . "${CONDA}/bin/activate" test-env
-        pycodestyle diraccfg/ tests/
+        pycodestyle src/diraccfg/ tests/
 
   publish-pypi:
     runs-on: ubuntu-latest
