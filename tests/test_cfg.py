@@ -11,5 +11,5 @@ def test_load():
 
 
 def test_comment():
-    c = CFG().loadFromFile(EXAMPLE_CFG_FILE)
-    c.getComment('Releases').strip() == 'Here is where the releases go:'
+  c = CFG().loadFromFile(EXAMPLE_CFG_FILE)
+  c.getComment('Releases').strip() == 'Here is where the releases go:'
