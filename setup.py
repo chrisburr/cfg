@@ -6,7 +6,9 @@ with open(os.path.join(os.path.dirname(__file__), "README.md"), "rt") as fh:
 
 test_requires = [
     "pytest",
+    "pytest-cov",
     "pylint>=1.6.5",
+    "pycodestyle",
 ]
 
 setuptools.setup(
@@ -29,9 +31,15 @@ setuptools.setup(
         'console_scripts': ['diraccfg=diraccfg.__main__:parseArgs'],
     },
     classifiers=[
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "License :: OSI Approved :: GPLv3 License",
         "Operating System :: OS Independent",
     ],
-    python_requires=">=2.7",
+    python_requires=">=2.7,!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*",
 )
