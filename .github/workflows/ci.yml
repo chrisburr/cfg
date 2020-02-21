@@ -43,7 +43,11 @@ jobs:
     name: Publish package to PyPI
     needs: [pytest, pycodestyle]
     steps:
-      - name: Publish package
+      - name: Prepare environment
+        run: .github/workflows/prepare_environment.sh ${{ matrix.python_version }}
+      - name: Build distributions
+        run: python setup.py sdist bdist_wheel --universal
+      - name: Publih package
         if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
         uses: pypa/gh-action-pypi-publish@master
         with:
