@@ -1,9 +1,7 @@
-""" This is the main module that interprets DIRAC cfg format
-"""
+""" This is the main module that interprets DIRAC cfg format"""
 
+from __future__ import absolute_import
 from __future__ import print_function
-
-__RCSID__ = "$Id$"
 
 import copy
 import os
@@ -21,11 +19,11 @@ def S_OK(value=''):
   return {'OK': True, 'Value': value}
 
 
-class ListDummy:
+class ListDummy(object):
   def fromChar(self, inputString, sepChar=","):
-    if not (isinstance(inputString, six.string_types) and
-            isinstance(sepChar, six.string_types) and
-            sepChar):  # to prevent getting an empty String as argument
+    if not (isinstance(inputString, six.string_types)
+            and isinstance(sepChar, six.string_types)
+            and sepChar):  # to prevent getting an empty String as argument
       return None
 
     return [fieldString.strip() for fieldString in inputString.split(sepChar) if len(fieldString.strip()) > 0]
@@ -34,8 +32,8 @@ class ListDummy:
 List = ListDummy()
 
 
-class Synchronizer:
-  """ Class enapsulating a lock
+class Synchronizer(object):
+  """ Class encapsulating a lock
   allowing it to be used as a synchronizing
   decorator making the call thread-safe"""
 
