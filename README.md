@@ -1,5 +1,9 @@
 # Parser for DIRAC cfg files
 
+[![CI](https://github.com/DIRACGrid/diraccfg/workflows/CI/badge.svg?branch=master)](https://github.com/DIRACGrid/diraccfg/actions?query=branch%3Amaster)
+[![PyPI](https://badge.fury.io/py/diraccfg.svg)](https://pypi.org/project/diraccfg/)
+[![Conda-Forge](https://img.shields.io/conda/vn/conda-forge/diraccfg)](https://github.com/conda-forge/diraccfg-feedstock/)
+
 `diraccfg` provides a parser for the configuration files used by
 [DIRAC](https://github.com/DIRACGrid) and its associated projects.
 It is designed to be usable as either a full Python package or as a standalone
