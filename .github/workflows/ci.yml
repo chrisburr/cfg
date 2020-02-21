@@ -44,6 +44,8 @@ jobs:
     needs: [pytest, pycodestyle]
     steps:
       - uses: actions/checkout@v2
+      - run: |
+          git fetch --prune --unshallow
       - name: Prepare environment
         run: .github/workflows/prepare_environment.sh 3
       - name: Build distributions
